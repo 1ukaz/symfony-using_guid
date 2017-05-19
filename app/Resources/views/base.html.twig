@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Orders List{% endblock %}</title>
+        {% block stylesheets %}
+            <style>
+                .del {color: #f00; text-shadow: 1px 1px 1px #ccc;}
+                .del:hover {color: #f00; text-shadow: 1px 1px 1px #ccc;}
+                .edi {text-shadow: 1px 1px 1px #ccc;}
+            </style>
+        {% endblock %}
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" rel="stylesheet">
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+    </head>
+    <body>
+        {% block body %}
+            <div class="container-fluid">
+                {% block main_content %}{% endblock %}
+            </div>
+        {% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

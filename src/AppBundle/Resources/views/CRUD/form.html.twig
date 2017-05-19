@@ -1,0 +1,63 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}{{ entity }} Form{% endblock %}
+
+{% block javascripts %}
+    {% javascripts '@AppBundle/Resources/public/js/*' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+
+{% block main_content %}
+    <div class="navbar">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">{{ entity }} Form</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <a href="{{ path('home_orders') }}" role="button" class="btn btn-primary navbar-btn navbar-right">
+                        <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&nbsp;Back To List
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="container">
+        {% for type, flash_messages in app.session.flashBag.all %}
+            {% for flash_message in flash_messages %}
+                <div class="alert alert-{{ type }}">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Sorry!</strong>&nbsp;{{ flash_message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {% if form is not null %}
+            {% if entity == "Order" %}
+                {{ form_start(form) }}
+                    {{ form_errors(form) }}
+                    <div class="form-group">
+                        {{ form_label(form.data) }}
+                        {{ form_errors(form.data) }}
+                        {{ form_widget(form.data) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.client) }}
+                        {{ form_errors(form.client) }}
+                        {{ form_widget(form.client) }}
+                    </div>
+                {{ form_end(form) }}
+            {% else %}
+                {{ form_start(form) }}
+                    {{ form_errors(form) }}
+                    <div class="form-group">
+                        {{ form_label(form.name) }}
+                        {{ form_errors(form.name) }}
+                        {{ form_widget(form.name) }}
+                    </div>
+                {{ form_end(form) }}
+            {% endif %}
+        {% endif %}
+    </div>
+{% endblock %}
+
